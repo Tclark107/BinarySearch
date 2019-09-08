@@ -14,11 +14,5 @@ using namespace std;
 
 int main() {
 	cout << "Text" << endl;
-
-	//a test
-	//another test
-	//and another
-	// hopefully the last one
-	// im hopeful that this one will be it
-
+	cout << "Text" << endl;
 }
