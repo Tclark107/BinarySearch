@@ -3,6 +3,7 @@
 //
 // My first attempt at using Github during the process of a project.  
 // Here is my version of a binary search algorithm in C++.  
+// It will print 1 if the element is found and -1 if it is not found.
 // It will be tested on the command line.
 //
 // Tristan Clark
@@ -36,17 +37,29 @@ vector<int> CreateVec(int lenOfVec) {
 // void foo(vector<int> const& bar); // by const-reference
 
 // my implementation of the binary search algorithm
-void BinarySearch(vector<int> vec) {
-	int low, mid, high;
-
-	high = vec.size();
-	//cout << "high: " << high << endl;
-
-	low = vec[0];
-	//cout << "low: " << low << endl;
-
-
-	
+// prints 1 or -1 if the element is found or not found
+// using nested if statements
+void BinarySearch(vector<int> vec, int low, int high, int num) {
+	int mid = ((high - low) / 2) + low;
+	if (low != high) {
+		if (num == vec[mid]) {
+			cout << 1 << endl;
+		}
+		else if (num < vec[mid]) {
+			BinarySearch(vec, low, mid - 1, num);
+		}
+		else if (num > vec[mid]) {
+			BinarySearch(vec, mid + 1, high, num);
+		}
+	}
+	else {
+		if (num == vec[mid]) {
+			cout << 1 << endl;
+		}
+		else {
+			cout << -1 << endl;
+		}
+	}
 }
 
 int main() {
@@ -61,7 +74,6 @@ int main() {
 		cout << "Choose how long you want the length of the Vector and the number you want to find: ";
 		cin >> lenOfVec;
 		cin >> numOfInterest;
-		// cout << "The length of the Array is: " << lenOfArr << " and the number you want to find is: " << numOfInterest << endl;
 
 		// take in a list of numbers and put them in a vector
 		// we chose a vector instead of an array because array length need to be known by compile time
@@ -72,6 +84,6 @@ int main() {
 			v = CreateVec(lenOfVec);
 		}
 
-		BinarySearch(v);
+		BinarySearch(v, 0, (v.size() - 1), numOfInterest);
 	}
 }
