@@ -39,25 +39,25 @@ vector<int> CreateVec(int lenOfVec) {
 // my implementation of the binary search algorithm
 // prints 1 or -1 if the element is found or not found
 // using nested if statements
-void BinarySearch(vector<int> vec, int low, int high, int num) {
+int BinarySearch(vector<int> vec, int low, int high, int num) {
 	int mid = ((high - low) / 2) + low;
 	if (low != high) {
 		if (num == vec[mid]) {
-			cout << 1 << endl;
+			return 1;
 		}
 		else if (num < vec[mid]) {
-			BinarySearch(vec, low, mid - 1, num);
+			return BinarySearch(vec, low, mid - 1, num);
 		}
 		else if (num > vec[mid]) {
-			BinarySearch(vec, mid + 1, high, num);
+			return BinarySearch(vec, mid + 1, high, num);
 		}
 	}
 	else {
 		if (num == vec[mid]) {
-			cout << 1 << endl;
+			return 1;
 		}
 		else {
-			cout << -1 << endl;
+			return -1;
 		}
 	}
 }
@@ -84,6 +84,7 @@ int main() {
 			v = CreateVec(lenOfVec);
 		}
 
-		BinarySearch(v, 0, (v.size() - 1), numOfInterest);
+		int result = BinarySearch(v, 0, (v.size() - 1), numOfInterest);
+		cout << result << endl;
 	}
 }
